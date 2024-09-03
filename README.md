@@ -26,9 +26,72 @@ El _plugin_ se llama **HashiCorp Terraform** y ha sido desarrollado por la empre
 
 ## Comandos básicos
 
+### Inicializar el directorio de trabajo
+
+En primer lugar hay que descargar los plugins necesarios del proveedor que se especifica en el archivo de configuración.
+
+```
+terraform init
+```
+
+### Formatear y validar el archivo de configuración
+
+Terraform nos proporciona un comando para formatear el archivo de configuración para que sea más legible. Algunas de las tareas que realiza este comando son, ajustar la indentación, ordenar los argumentos de los bloques de configuración, etc.
+
+```
+terraform fmt
+```
+
+Para validar la sintaxis del archivo de configuración podemos utilizar el siguiente comando.
+
+```
+terraform validate
+```
+
+### Mostrar los cambios que se van a realizar
+
+Compara la configuración del archivo de Terraform con la que existe actualmente en el proveedor de infraestructura y muestra las acciones que se tienen que realizar para conseguir la configuración deseada. Permite al usuario verificar los cambios antes de aplicarlos en el proveedor.
+
+```
+terraform plan
+```
+
+### Aplicar los cambios
+
+Crea los recursos del archivo de configuración en su cuenta de AWS.
+
+```
+terraform apply
+```
+
+Si queremos crear los recursos sin tener que escribir `yes` para confirmar la ejecución del comando, podemos utilizar la opción `-auto-approve`.
+
+```
+terraform apply -auto-approve
+```
+
+### Mostrar el estado actual de los recursos
+
+Muestra los recursos creados en el proveedor y su estado actual.
+
+``` 
+terraform show
+```
+
+### Eliminar los recursos
+
+Elimina los recursos indicados en el proveedor.
+
+``` 
+terraform destroy
+```
+
 ## Practicas, ejemplos y caso reales.
 
-## Referencias
+- [Ejemplo 1](Terraform-Azure-AWS/terraform-project-01). 
+- [Ejemplo 2](Terraform-Azure-AWS/terraform-project-02). 
+- [Ejemplo 3](Terraform-Azure-AWS/terraform-project-02). 
+
 
 
 [1]: https://www.terraform.io
