@@ -19,7 +19,7 @@ Para realizar la instalación de Terraform se recomienda seguir los pasos de la 
 
 ## Instalación de Visual Code 
 
-Para poder trabajar con terraform se recomienda un editor de codigo fuente. En este caso vamos a trabajar con visual code ya que es ligero, rápido, y altamente personalizable, además de ser gratuito y de código abierto. Está diseñado para escribir, depurar y ejecutar código en una amplia variedad de lenguajes de programación y plataformas.
+Para poder trabajar con terraform se recomienda un editor de codigo fuente. En este caso vamos a trabajar con visual code ya que es ligero, rápido, y altamente personalizable, además de ser gratuito y de código abierto. Está diseñado para escribir, depurar código en una amplia variedad de lenguajes de programación y plataformas.
 
 Para su instalacion podemos descargarlo desde la [web de visual code][5], seleccionamos sistema operativo e instalamos. 
 
