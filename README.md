@@ -14,7 +14,14 @@ Este repositorio ha sido creado como un recurso para prácticas y casos reales d
 
 ## Instalación de Terraform
 
-Para realizar la instalación de Terraform se recomienda seguir los pasos de la [documentación oficial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
+Para realizar la instalación de Terraform se recomienda seguir los pasos de la [documentación oficial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli). 
+
+
+## Instalación de Visual Code 
+
+Para poder trabajar con terraform se recomienda un editor de codigo fuente. En este caso vamos a trabajar con visual code ya que es ligero, rápido, y altamente personalizable, además de ser gratuito y de código abierto. Está diseñado para escribir, depurar y ejecutar código en una amplia variedad de lenguajes de programación y plataformas.
+
+Para su instalacion podemos descargarlo desde la [web de visual code][5], seleccionamos sistema operativo e instalamos. 
 
 
 ## Instalación del _plugin_ de Terraform para Visual Studio Code
@@ -88,13 +95,13 @@ terraform destroy
 
 ## Practicas, ejemplos y caso reales.
 
-- [Ejemplo 1](Terraform-Azure-AWS/terraform-project-01). 
-- [Ejemplo 2](Terraform-Azure-AWS/terraform-project-02). 
-- [Ejemplo 3](Terraform-Azure-AWS/terraform-project-02). 
-
+- [Ejemplo 1](terraform-project-01). Proyecto Instalacion Nginx.
+- [Ejemplo 2](terraform-project-02). 
+- [Ejemplo 3](terraform-project-03). 
 
 
 [1]: https://www.terraform.io
 [2]: https://aws.amazon.com/es/
 [3]: https://es.wikipedia.org/wiki/Infraestructura_como_c%C3%B3digo
 [4]: https://azure.microsoft.com/es-es/
+[5]: https://code.visualstudio.com/download
