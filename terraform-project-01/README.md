@@ -20,8 +20,12 @@ Principales funciones de Nginx:
 Los requisitos de un proyecto son esenciales para definir qué se necesita para cumplir con los objetivos y entregables del proyecto. Estos pueden variar dependiendo del tipo de proyecto. En este caso los requisitos que vamos a necesitas son:
 
 - Proveedor Azure (Proveedor de Infraestructura)
-- Instancia VM (Virtual Machine basada en Linux)
-- Security Group (Para poder abrir y cerrar puertos)
+- Recursos:
+    - Grupo de recursos: Es una entidad que agrupa todos los recursos, lo que facilita la gestión y administración.
+    - Virtual Network (VNet) y Subnet: Define la red virtual y la subred que usará la VM.
+    - Network Security Group (NSG): Configura las reglas de seguridad para abrir los puertos 80 (HTTP) y 22 (SSH).
+    - Network Interface (NIC): Conecta la interfaz de red con la subred y el grupo de seguridad.
+    - Virtual Machine (VM): Finalmente, crea la VM con las configuraciones de red, disco, y el sistema operativo
 - Nginx (Servicio)
 - Llaves SSH (para que se pueda acceder a la maquina)
 - Tags (Etiquetas paraidentificar recursos)
