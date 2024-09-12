@@ -70,18 +70,18 @@ La estructura del proyecto que vamos a seguir en Terraform es la siguiente:
 
 Terraform Estructura
 
-terraform-proyect-01
-    modules
-        resource-group
-            main.tf
-            variables.tf
-        virtualmachines
-            main.tf
-            variables.tf
-    main.tf
-    providers.tf
-    terraform.tfvars
-    outputs.tf
+* terraform-proyect-01
+    * modules
+        * resource-group
+            * main.tf
+            * variables.tf
+        * virtualmachines
+            * main.tf
+            * variables.tf
+    * main.tf
+    * providers.tf
+    * terraform.tfvars
+    * outputs.tf
 
 Vamos a explicar detalladamente para que sirve cada archivo y carpeta. 
 
