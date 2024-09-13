@@ -18,6 +18,7 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name = var.vnetname
   resource_group_name  = var.rgname
   address_prefixes     = ["10.0.1.0/24"]
+  depends_on = [azurerm_virtual_network.vnet]
 }
 
 # Network Security Group (NSG): Configura las reglas de seguridad para abrir los puertos 80 (HTTP) y 22 (SSH).
