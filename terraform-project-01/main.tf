@@ -5,7 +5,6 @@
 
 variable "rgname" {}
 variable "location" {}
-variable "vmname" {}
 variable "vnetname" {}
 variable "subnetname" {}
 variable "nsgname" {}
@@ -23,10 +22,11 @@ module "mod_01" {
 
  module "mod_02" { 
     source = "./modules/networking"
-    vnetname = var.vmname
+    vnetname = var.vnetname
     subnetname = var.subnetname
     nsgname = var.nsgname
     nicname = var.nicname
     rgname = var.rgname
     location = var.location
+    depends_on = [module.mod_01]
 }
