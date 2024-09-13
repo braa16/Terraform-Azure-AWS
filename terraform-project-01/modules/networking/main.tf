@@ -1,16 +1,22 @@
+# Este archivo contiene la definición de los recursos de red que se van a crear. Se invocaran desde los modulos del main principal.  
+
 # Virtual Network (VNet) y Subnet: Define la red virtual y la subred que usará la VM.
+
+# Una Virtual Network (VNet) en Azure es una red privada y flexible que te permite controlar cómo los recursos en Azure se conectan entre sí y con el mundo exterior.
 
 resource "azurerm_virtual_network" "vnet" {
     name = var.vnetname
     address_space = ["10.0.0.0/16"]
-    location = azurerm_resource_group.var.location
-    resource_group_name = azurerm_resource_group.var.rgname
+    location = var.location
+    resource_group_name = var.rgname
 }
+
+# Una Subnet es una subred que forma parte de una Virtual Network (VNet). Permiten segmentar tu red virtual en bloques más pequeños y organizados.
 
 resource "azurerm_subnet" "subnet" {
   name                 = var.subnetname
-  virtual_network_name = azurerm_virtual_network.var.vnetname
-  resource_group_name  = azurerm_resource_group.var.rgname 
+  virtual_network_name = var.vnetname
+  resource_group_name  = var.rgname
   address_prefixes     = ["10.0.1.0/24"]
 }
 
@@ -18,8 +24,8 @@ resource "azurerm_subnet" "subnet" {
 
 resource "azurerm_network_security_group" "nsg" {
   name                = var.nsgname
-  location            = azurerm_resource_group.var.location
-  resource_group_name = azurerm_resource_group.var.rgname
+  location            = var.location
+  resource_group_name = var.rgname
 
   security_rule {
     name                       = "Allow_HTTP"
@@ -46,16 +52,18 @@ resource "azurerm_network_security_group" "nsg" {
   }
 }
 
-# Network Interface (NIC): Conecta la interfaz de red con la subred y el grupo de seguridad.
+# NIC: (Network Interface Card) tiene el objetivo principal de conectar la máquina virtual (VM) u otro recurso de red a nuestra VNet.
 
 resource "azurerm_network_interface" "nic" {
   name                = var.nicname
-  location            = azurerm_resource_group.var.location
-  resource_group_name = azurerm_resource_group.var.rgname
+  location            = var.location
+  resource_group_name = var.rgname
+
+# Configura cómo la interfaz de red obtendrá y gestionará su dirección IP dentro de la subred especificada, asegurando que esté conectada adecuadamente a la VNet.
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.var.subnetname
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
