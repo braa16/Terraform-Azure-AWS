@@ -13,5 +13,6 @@ variable "nsgname" {
 }
 variable "nicname" {
 }
-
+variable "publicipname" {
+}
 

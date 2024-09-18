@@ -66,5 +66,15 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = azurerm_public_ip.my-publicip.id
   }
+}
+
+# Configuramos la IP pública que asignaremos a la VM para ser accesibles desde la Internet pública.
+
+resource "azurerm_public_ip" "my-publicip" {
+  name                = var.publicipname
+  resource_group_name = var.rgname
+  location            = var.location
+  allocation_method   = "Dynamic"
 }
