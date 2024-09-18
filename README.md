@@ -1,8 +1,8 @@
 # Terraform-Azure-AWS
 
-Repositorio para hacer experimentos, praticas y casos reales con [Terraform][1] en [Azure][4] y [AWS][2].
+Repositorio para laboratorios y casos reales con [Terraform][1] en [Azure][4] y [AWS][2].
 
-Este repositorio ha sido creado como un recurso para prácticas y casos reales de **Infraestructura como Código** que he implementado a la hora de aprender y a lo largo de mi experiencia laboral.
+Este repositorio ha sido creado como un recurso para laboratorios y casos reales de **Infraestructura como Código** que he implementado a la hora de aprender y a lo largo de mi experiencia laboral.
 
 
 ## ¿Qué es Terraform?
@@ -93,12 +93,10 @@ Elimina los recursos indicados en el proveedor.
 terraform destroy
 ```
 
-## Practicas, ejemplos y caso reales.
+## Labs y casos.
 
-- [Ejemplo 1](terraform-project-01). Proyecto Instalacion Nginx.
-- [Ejemplo 2](terraform-project-02). 
-- [Ejemplo 3](terraform-project-03). 
 
+* Despliegue de infraestructura en Azure y configuracón de Servidor Nginx: [Documentación](terraform-project-01)
 
 [1]: https://www.terraform.io
 [2]: https://aws.amazon.com/es/
