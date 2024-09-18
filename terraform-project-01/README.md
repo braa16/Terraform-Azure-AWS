@@ -1,6 +1,6 @@
 # Proyecto Instalacion Nginx.
 
-Se desea implementar un sitio web en una cuenta de Azure. Para ello, se planea desplegar una instancia de máquina virtual (VM) en Azure e instalar NGINX en ella. La configuración adicional de NGINX será realizada por el equipo de desarrollo posteriormente. Además, es necesario abrir los puertos 80 (HTTP) y 22 (SSH) para permitir el acceso y la configuración de la VM.
+Se desea implementar un sitio web en una cuenta de Azure. Para ello, se planea desplegar una instancia de máquina virtual (VM) en Azure e instalar NGINX en ella. La configuración adicional de NGINX será realizada por el equipo de desarrollo posteriormente. Además, es necesario abrir los puertos 80 (HTTP) y 22 (SSH) para permitir el acceso y la configuración de la VM. Este despliegue se realizara en un entorno de desarrollo y no de producción.
 
 
 ## ¿Qué es Nginx?
@@ -12,23 +12,34 @@ Principales funciones de Nginx:
 - Proxy Inverso 
 - Balanceador de carga
 - Caché de contenido
-- Servidor de correo:
+- Servidor de correo
 
 
 ## Requisitos para el proyecto.
 
 Los requisitos de un proyecto son esenciales para definir qué se necesita para cumplir con los objetivos y entregables del proyecto. Estos pueden variar dependiendo del tipo de proyecto. En este caso los requisitos que vamos a necesitas son:
 
-- Proveedor Azure (Proveedor de Infraestructura)
-- Recursos:
-    - Grupo de recursos: Es una entidad que agrupa todos los recursos, lo que facilita la gestión y administración.
+- Proveedor: Azure es la plataforma de servicios en la nube de Microsoft, ofrece una amplia gama de productos y servicios para desarrollar, implementar y gestionar aplicaciones a través de una red global de centros de datos. 
+
+- Recursos: Son los componentes fundamentales que se pueden crear y administrar desde Azure. En nuestro caso desplegaremos los siguientes:
+    - Grupo de Recursos: Es una entidad que agrupa todos los recursos, lo que facilita la gestión y administración.
     - Virtual Network (VNet) y Subnet: Define la red virtual y la subred que usará la VM.
     - Network Security Group (NSG): Configura las reglas de seguridad para abrir los puertos 80 (HTTP) y 22 (SSH).
     - Network Interface (NIC): Conecta la interfaz de red con la subred y el grupo de seguridad.
-    - Virtual Machine (VM): Finalmente, crea la VM con las configuraciones de red, disco, y el sistema operativo
-- Nginx (Servicio)
-- Llaves SSH (para que se pueda acceder a la maquina)
-- Tags (Etiquetas paraidentificar recursos)
+    - Public IP: Es una dirección única asignada a un recurso que puede ser accedida desde fuera de la red de Azure, por ejemplo, desde Internet.
+    - Virtual Machine (VM): Desplegar la máquina virtual (VM) con sistema operativo Debian, en su ultima version. Utilizaremos varios valores que se toman de variables (como nombre, tamaño, red, etc.) y asigna una interfaz de red existente a la VM. El tamaño es DS1_v2 ya que es una opción sólida para ejecutar un servidor NGINX de aplicaciones web con tráfico bajo a moderado.
+    
+
+- Llaves SSH (para que se pueda acceder a la VM)
+    - Vamos a configurar el acceso SSH que es un método de conexión segura a VM, de forma encriptada, mediante un par de claves RSA (Publica y Privada)
+    - Clave privada: Esta clave se guarda de manera segura en la máquina local / Clave Privada: Esta clave se coloca en el servidor o VM.
+    - Para generar ejecutamos el siguiente comando en nuestra terminal "ssh-keygen -t rsa -b 4096", guardamos las claves.
+    - Finalmente configuramos nuestra Clave Publica en la VM, en este caso como estamos automatizando, lo haremos mediante Terraform, pasando a traves de una variable el path donde se encuentra nuestra llave publica (~/.ssh/id_rsa.pub) para hacerlo mas flexible. El contenido de ese archivo se pasa como parte de la configuración.
+    - Cuando Terraform despliega la máquina virtual en Azure, se encarga de que la clave pública SSH sea copiada al archivo ~/.ssh/authorized_keys de nuestra VM.
+
+- El despliegue de NGINX en la VM se realizará con Terraform, aunque no es la mejor opción para configurar software dentro de la VM. Para configuraciones más complejas o la gestión de múltiples servidores, se recomienda usar herramientas como Ansible. Alternativamente y en este caso, se optará por usar el recurso custom_data (Cloud-init) para hacerlo de forma simple y rápida. La idea es almacenar el script en un archivo externo (setup.sh) y luego referenciarlo desde el código Terraform usando una función e incluir su contenido en la configuración de custom_data.
+
+- Vamos a utilizar los tags (etiquetas) en Azure para organizar y gestionar recursos de manera eficiente. Son pares clave-valor que permiten identificar, categorizar y agrupar recursos como máquinas virtuales, redes y bases de datos, facilitando su administración en entornos grandes.
 
 
 ## Herramientas.
@@ -73,6 +84,9 @@ Terraform Estructura
 * terraform-proyect-01
     * modules
         * resource-group
+            * main.tf
+            * variables.tf
+        * networking
             * main.tf
             * variables.tf
         * virtualmachines
