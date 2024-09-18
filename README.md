@@ -1,5 +1,7 @@
 # Terraform-Azure-AWS
 
+<p align="center"> <img src="images/terraform.png" alt="Terraform" width="500" height="250"> </p>
+
 Repositorio para laboratorios y casos reales con [Terraform][1] en [Azure][4] y [AWS][2].
 
 Este repositorio ha sido creado como un recurso para laboratorios y casos reales de **Infraestructura como Código** que he implementado a la hora de aprender y a lo largo de mi experiencia laboral.
