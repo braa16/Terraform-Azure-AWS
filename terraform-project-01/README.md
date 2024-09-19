@@ -125,7 +125,7 @@ Terraform Estructura.
         ┃   ┃  ┗ 📜 variables.tf
         ┃   ┣ 📜 .gitignore
         ┗   ┗ 📜 README.md 
-      ```
+```
 
 Vamos a explicar detalladamente para que sirve cada archivo y carpeta. 
 
