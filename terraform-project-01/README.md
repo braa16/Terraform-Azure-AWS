@@ -1,4 +1,6 @@
-# Proyecto Instalacion Nginx.
+# Despliegue de infraestructura mediante Terraform y configuracón de Servidor Nginx.
+
+<p align="center"><img src="../images/nginx.jpeg" alt="nginx" width="250" height="100"></p>
 
 Se desea implementar un sitio web en una cuenta de Azure. Para ello, se planea desplegar una instancia de máquina virtual (VM) en Azure e instalar NGINX en ella. La configuración adicional de NGINX será realizada por el equipo de desarrollo posteriormente. Además, es necesario abrir los puertos 80 (HTTP) y 22 (SSH) para permitir el acceso y la configuración de la VM. Este despliegue se realizara en un entorno de desarrollo y no de producción.
 
@@ -42,6 +44,22 @@ Los requisitos de un proyecto son esenciales para definir qué se necesita para 
 - Vamos a utilizar los tags (etiquetas) en Azure para organizar y gestionar recursos de manera eficiente. Son pares clave-valor que permiten identificar, categorizar y agrupar recursos como máquinas virtuales, redes y bases de datos, facilitando su administración en entornos grandes.
 
 
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="../images/viewresources.png" alt="View Resources" width="250" height="300"></td>
+      <td><img src="../images/allresources.png" alt="All Resources" width="300" height="150"></td>
+    </tr>   
+  </table>
+</div>
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="../images/nginxistatus.png" alt="View Resources" width="500" height="150"></td>        
+    </tr>   
+  </table>
+</div>
+
 ## Herramientas.
 
 Para desplegar un proyecto en un entorno de producción o desarrollo, necesitas un conjunto de herramientas que cubran diversas áreas, desde el control de versiones, gestión de infraestructura, orquestación, hasta automatización y monitoreo. A continuación, te detallo las herramientas clave que necesitarás para desplegar este proyecto.
@@ -79,23 +97,35 @@ Una buena estructura en un proyecto de Terraform es esencial para garantizar la 
 
 La estructura del proyecto que vamos a seguir en Terraform es la siguiente: 
 
-Terraform Estructura
+Terraform Estructura.
 
-* terraform-proyect-01
-    * modules
-        * resource-group
-            * main.tf
-            * variables.tf
-        * networking
-            * main.tf
-            * variables.tf
-        * virtualmachines
-            * main.tf
-            * variables.tf
-    * main.tf
-    * providers.tf
-    * terraform.tfvars
-    * outputs.tf
+ ```plaintext
+      📂 Terraform-Azure-AWS
+        ┃   ┣ 📂 images
+        ┃   ┣ 📂 terraform-proyect-01
+        ┃   ┃  ┣ 📂 modules        
+        ┃   ┃  ┃  ┣ 📂 networking
+        ┃   ┃  ┃  ┃  ┣ 📜 main.tf
+        ┃   ┃  ┃  ┃  ┣ 📜 variables.tf
+        ┃   ┃  ┃  ┃  ┗ 📜 outputs.tf  
+        ┃   ┃  ┃  ┣ 📂 resource-group
+        ┃   ┃  ┃  ┃  ┣ 📜 main.tf
+        ┃   ┃  ┃  ┃  ┗ 📜 variables.tf
+        ┃   ┃  ┃  ┣ 📂 virtual-machines
+        ┃   ┃  ┃  ┃  ┣ 📜 main.tf
+        ┃   ┃  ┃  ┃  ┣ 📜 variables.tf
+        ┃   ┃  ┃  ┗  ┗ 📜 setup.sh
+        ┃   ┃  ┣ 📜 .terraform.lock.hcl
+        ┃   ┃  ┣ 📜 main.tf
+        ┃   ┃  ┣ 📜 providers.tf
+        ┃   ┃  ┣ 📜 outputs.tf
+        ┃   ┃  ┣ 📜 README.md
+        ┃   ┃  ┣ 📜 terraform.tfstate
+        ┃   ┃  ┣ 📜 terraform.tfvars
+        ┃   ┃  ┗ 📜 variables.tf
+        ┃   ┣ 📜 .gitignore
+        ┗   ┗ 📜 README.md 
+      ```
 
 Vamos a explicar detalladamente para que sirve cada archivo y carpeta. 
 
