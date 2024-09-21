@@ -15,16 +15,7 @@ variable "hddname" {
 }
 variable "path_ssh" {
 }
-
-# Variables Networking 
-
-variable "nicname" {
-}
-variable "subnetname" {
-}
-variable "nsgname" {
-}
-variable "vnetname" {
-}
-variable "publicipname" {
+variable "nic_id" { # Variables NIC ID 
+  description = "ID de la tarjeta de red (NIC) asociada a la VM"
+  type        = string
 }

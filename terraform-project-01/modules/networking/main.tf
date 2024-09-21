@@ -78,3 +78,10 @@ resource "azurerm_public_ip" "my-publicip" {
   location            = var.location
   allocation_method   = "Dynamic"
 }
+
+# Asociación entre NSG y Subnet
+
+resource "azurerm_subnet_network_security_group_association" "nsg_association" {
+  subnet_id                 = azurerm_subnet.subnet.id  
+  network_security_group_id = azurerm_network_security_group.nsg.id 
+}
