@@ -27,18 +27,14 @@ module "mod_01" {
 
 module "mod_03" {
     source = "./modules/virtual-machines"
-    vmname = var.vmname
     rgname = var.rgname
     location = var.location
-    vnetname = var.vnetname
-    subnetname = var.subnetname
-    nsgname = var.nsgname
-    publicipname = var.publicipname
-    nicname = var.nicname
+    vmname = var.vmname
     admin_username = var.admin_username
     vm_size = var.vm_size
     hddname = var.hddname
     path_ssh = var.path_ssh
+    nic_id = module.mod_02.nic_id
     depends_on = [module.mod_02]
 }
 
