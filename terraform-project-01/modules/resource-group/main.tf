@@ -4,5 +4,16 @@
 resource "azurerm_resource_group" "rg" {
     location = var.location
     name = var.rgname
+
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+tags = {
+    Environment   = "Desarrollo"
+    Owner         = "admin"
+    Department    = "IT"
+    Project       = "APP1"
+
+  }
+
 }
 

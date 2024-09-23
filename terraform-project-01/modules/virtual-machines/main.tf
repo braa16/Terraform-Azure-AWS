@@ -34,6 +34,7 @@ source_image_reference {
   offer     = "debian-11"
   sku       = "11"
   version   = "latest"
+
 }
 
 # Acceso SSH, método de conexión segura a VM de forma encriptada, mediante un par de claves RSA (Publica y Privada)
@@ -47,5 +48,13 @@ admin_ssh_key {
 
  custom_data = base64encode(file("${path.module}/setup.sh"))
 
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+tags = {
+    Environment   = "Desarrollo"
+    Owner         = "admin"
+    Department    = "IT"
+    Project       = "APP1"
+  }
 }
 

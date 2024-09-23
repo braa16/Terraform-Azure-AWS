@@ -9,6 +9,18 @@ resource "azurerm_virtual_network" "vnet" {
     address_space = ["10.0.0.0/16"]
     location = var.location
     resource_group_name = var.rgname
+
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+tags = {
+    Environment   = "Desarrollo"
+    Owner         = "network-admin"
+    Department    = "IT"
+    Project       = "APP1"
+    SecurityLevel= "High"
+
+  }
+
 }
 
 # Una Subnet es una subred que forma parte de una Virtual Network (VNet). Permiten segmentar tu red virtual en bloques más pequeños y organizados.
@@ -19,6 +31,7 @@ resource "azurerm_subnet" "subnet" {
   resource_group_name  = var.rgname
   address_prefixes     = ["10.0.1.0/24"]
   depends_on = [azurerm_virtual_network.vnet]
+
 }
 
 # Network Security Group (NSG): Configura las reglas de seguridad para abrir los puertos 80 (HTTP) y 22 (SSH).
@@ -51,6 +64,16 @@ resource "azurerm_network_security_group" "nsg" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+tags = {
+    Environment   = "Desarrollo"
+    Owner         = "network-admin"
+    Department    = "IT"
+    Project       = "APP1"
+
+  }
 }
 
 # NIC: (Network Interface Card) tiene el objetivo principal de conectar la máquina virtual (VM) u otro recurso de red a nuestra VNet.
@@ -68,6 +91,16 @@ resource "azurerm_network_interface" "nic" {
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id = azurerm_public_ip.my-publicip.id
   }
+
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+  tags = {
+    Environment   = "Desarrollo"
+    Owner         = "network-admin"
+    Department    = "IT"
+    Project       = "APP1"
+
+  }
 }
 
 # Configuramos la IP pública que asignaremos a la VM para ser accesibles desde la Internet pública.
@@ -77,6 +110,17 @@ resource "azurerm_public_ip" "my-publicip" {
   resource_group_name = var.rgname
   location            = var.location
   allocation_method   = "Dynamic"
+
+# Etiqueta para organizar, gestionar y clasificar los recursos
+
+  tags = {
+    Environment   = "Desarrollo"
+    Owner         = "network-admin"
+    Department    = "IT"
+    Project       = "APP1"
+
+  }
+
 }
 
 # Asociación entre NSG y Subnet
